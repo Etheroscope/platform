@@ -19,6 +19,10 @@
   - name: install nodejs
     sudo: yes
     apt: pkg=nodejs
+    
+  - name: install n
+    become: True
+    shell: npm install -g n
 
   - name: upgrade nodejs
     command: sudo n latest
