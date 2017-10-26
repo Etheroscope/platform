@@ -1,7 +1,7 @@
 ---
   - name: update apt packages
     sudo: yes
-    apt: update_cache=yes cache_valid_time=3600
+    shell: apt-get update
 
   - name: install basic apt packages
     sudo: yes
