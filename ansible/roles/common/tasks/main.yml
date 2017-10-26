@@ -2,6 +2,7 @@
   - name: update apt packages
     sudo: yes
     shell: apt-get update
+    ignore_errors: yes
 
   - name: install basic apt packages
     sudo: yes
