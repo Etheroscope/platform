@@ -12,10 +12,6 @@
       - g++ 
       - make 
 
-  - name: add Chris Lea's nodejs ppa
-    sudo: yes
-    apt_repository : repo='ppa:chris-lea/node.js'
-
   - name: install nodejs
     sudo: yes
     apt: pkg=nodejs
