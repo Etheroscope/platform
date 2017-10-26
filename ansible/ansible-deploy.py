@@ -6,7 +6,7 @@ branch
 
 import os
 import sys
-from subprocess import call
+from subprocess import check_call
 
 EXIT_SUCCESS = 0
 
@@ -42,5 +42,5 @@ inventory_file_name = '{}-{}'.format(S_INVENTORY, env_tag)
 # Make sure that required inventory file exists
 if not os.path.isfile(inventory_file_name):
     exit(S_NO_REQUIRED_INVENTORY_ERROR_MSG.format(inventory_file_name, env_tag))
-call([S_ANSIBLE_PLAYBOOK, S_PLAYBOOK_YML, S_I_FLAG, inventory_file_name,
+check_call([S_ANSIBLE_PLAYBOOK, S_PLAYBOOK_YML, S_I_FLAG, inventory_file_name,
       S_VVV_FLAG])
