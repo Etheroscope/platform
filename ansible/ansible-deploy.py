@@ -48,7 +48,7 @@ if not os.path.isfile(inventory_file_name):
     exit(S_NO_REQUIRED_INVENTORY_ERROR_MSG.format(inventory_file_name, env_tag))
 # Install Galaxy requirements if the file exists
 if os.path.isfile(S_REQUIREMENTS_YML):
-    check_call([S_ANSIBLE_GALAXY, S_INSTALL, S_R_FLAG, S_VVV_FLAG, 
+    check_call([S_ANSIBLE_GALAXY, S_INSTALL, S_VVV_FLAG, S_R_FLAG, 
     S_REQUIREMENTS_YML])
 check_call([S_ANSIBLE_PLAYBOOK, S_PLAYBOOK_YML, S_I_FLAG, inventory_file_name,
       S_VVV_FLAG])
