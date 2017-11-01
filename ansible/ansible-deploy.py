@@ -23,11 +23,6 @@ S_ANSIBLE_PLAYBOOK = 'ansible-playbook'
 S_PLAYBOOK_YML = 'playbook.yml'
 S_I_FLAG = '-i'
 S_VVV_FLAG = '-vvv'
-S_REQUIREMENTS_YML = 'requirements.yml'
-S_ANSIBLE_GALAXY = 'ansible-galaxy'
-S_INSTALL = 'install'
-S_R_FLAG = '-r'
-S_SUDO = 'sudo'
 
 BRANCH_ENVIRONMENT_MAPPINGS = {
   S_MASTER: S_PRODUCTION,
@@ -47,9 +42,5 @@ inventory_file_name = '{}-{}'.format(S_INVENTORY, env_tag)
 # Make sure that required inventory file exists
 if not os.path.isfile(inventory_file_name):
     exit(S_NO_REQUIRED_INVENTORY_ERROR_MSG.format(inventory_file_name, env_tag))
-# Install Galaxy requirements if the file exists
-if os.path.isfile(S_REQUIREMENTS_YML):
-    check_call([S_SUDO, S_ANSIBLE_GALAXY, S_INSTALL, S_VVV_FLAG, S_R_FLAG,
-                S_REQUIREMENTS_YML])
 check_call([S_ANSIBLE_PLAYBOOK, S_PLAYBOOK_YML, S_I_FLAG, inventory_file_name,
       S_VVV_FLAG])
