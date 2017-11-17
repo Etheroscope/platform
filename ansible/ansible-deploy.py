@@ -23,6 +23,8 @@ S_ANSIBLE_PLAYBOOK = 'ansible-playbook'
 S_PLAYBOOK_YML = 'playbook.yml'
 S_I_FLAG = '-i'
 S_VVV_FLAG = '-vvv'
+S_EXTRA_VARS_FLAG = '--extra-vars'
+S_EXTRA_VARS = '\"node_env={}\"'
 
 BRANCH_ENVIRONMENT_MAPPINGS = {
   S_MASTER: S_PRODUCTION,
@@ -43,4 +45,4 @@ inventory_file_name = '{}-{}'.format(S_INVENTORY, env_tag)
 if not os.path.isfile(inventory_file_name):
     exit(S_NO_REQUIRED_INVENTORY_ERROR_MSG.format(inventory_file_name, env_tag))
 check_call([S_ANSIBLE_PLAYBOOK, S_PLAYBOOK_YML, S_I_FLAG, inventory_file_name,
-      S_VVV_FLAG])
+      S_VVV_FLAG, S_EXTRA_VARS_FLAG, S_EXTRA_VARS.format(env_tag)])
