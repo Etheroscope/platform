@@ -1,23 +1,23 @@
 ---
   - name: update apt packages
-    sudo: yes
+    become: True
     apt: update_cache=yes cache_valid_time=3600
 
   - name: install nodejs requirements
-    sudo: yes
+    become: True
     apt: pkg={{ item }} state=present
     with_items:
       - python-software-properties
-      - python 
-      - g++ 
-      - make 
+      - python
+      - g++
+      - make
 
   - name: add nodejs repo
     sudo: yes
     become: True
-    shell: curl -sL https://deb.nodesource.com/setup_8.x | bash -    
-    
+    shell: curl -sL https://deb.nodesource.com/setup_8.x | bash -
+
   - name: install nodejs
     become: True
     apt: pkg=nodejs
-  
+
