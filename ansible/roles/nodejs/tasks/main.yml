@@ -12,13 +12,12 @@
       - g++ 
       - make 
 
-  - name: install nodejs
+  - name: add nodejs repo
     sudo: yes
-    apt: pkg=nodejs
-    
-  - name: install n
     become: True
-    shell: npm install -g n
-
-  - name: upgrade nodejs
-    command: sudo n latest
+    shell: curl -sL https://deb.nodesource.com/setup_8.x | bash -    
+    
+  - name: install nodejs
+    become: True
+    apt: pkg=nodejs
+  
