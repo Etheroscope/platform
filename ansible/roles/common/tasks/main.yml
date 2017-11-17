@@ -1,11 +1,11 @@
 ---
   - name: update apt packages
-    sudo: yes
+    become: True
     shell: apt-get update
     ignore_errors: yes
 
   - name: install basic apt packages
-    sudo: yes
+    become: True
     apt: pkg={{ item }} state=present
     with_items:
       - curl

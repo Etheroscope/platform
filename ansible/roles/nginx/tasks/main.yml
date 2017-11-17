@@ -1,35 +1,35 @@
 ---
   - name: add nginx ppa
-    sudo: yes
+    become: True
     apt_repository: repo='ppa:nginx/stable'
 
   - name: update apt-get
-    sudo: yes
+    become: True
     apt: update_cache=yes cache_valid_time=3600
 
   - name: install nginx
-    sudo: yes
+    become: True
     apt: pkg=nginx state=present
 
   - name: copy nginx.conf
-    sudo: yes
+    become: True
     template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root group=root
     tags:
       - nginx
 
   - name: setup nginx host file dirs
-    sudo: yes
+    become: True
     file: name=/etc/nginx/{{ item }} state=directory owner=root group=root
     with_items:
       - sites-available
       - sites-enabled
 
   - name: ensure default nginx has been deleted
-    sudo: yes
+    become: True
     file: dest=/etc/nginx/sites-enabled/default state=absent
 
   - name: restart nginx
-    sudo: yes
+    become: True
     service: name=nginx state=restarted enabled=yes
     tags:
       - nginx

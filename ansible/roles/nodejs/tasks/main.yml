@@ -13,7 +13,6 @@
       - make
 
   - name: add nodejs repo
-    sudo: yes
     become: True
     shell: curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
